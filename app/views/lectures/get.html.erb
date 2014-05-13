@@ -1,0 +1,29 @@
+<h1  align="center">Vorlesungen</h1>
+
+	<table border="1" align="center" cellspacing="5" cellpadding="5" style="border-collapse:collapse;">
+		<tr>	
+			<td bgcolor="grey" align="center"><font color="white"><b>Titel</b></td>
+			<td bgcolor="grey" align="center"></td>
+			<td bgcolor="grey" align="center"></td>
+		</tr>
+			<% @lectures.each do |lecture| %>
+				<% lecture.lecturers.each do |lecturer| %>
+		<tr>	
+			<td align="center"><%= lecture.title %></td>
+			<td align="center"><%= lecturer.lastname %></td>
+			<td><%= link_to"delete",lecture_path(lecture),:method=>:delete%></td>
+			<td><%= link_to"edit",lecture_path(lecture),:method=>:get%></td>
+		</tr>
+			<% end %>
+		<% end %>
+		
+	</table>
+
+	<h2  align="center">Neue Vorlesung</h2>
+		<%= form_for @lecture do |f| %>
+			<p align="center">
+			<%= f.label :title %>: <%= f.text_field :title %></br>
+			<%= f.submit "Save" %>
+			</p>
+		<% end %>
+	
